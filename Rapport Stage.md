@@ -37,3 +37,14 @@ Le système easybroadcast qui a la capacité de réduire le flux d’internet de
 > **Leetchers** sont des peers à qui j'envoie des chunks. **Seeder** est l'inverse. 
 
 > Dans le code, on peut voir qu'on démande justement à un seul peer qui est evalué comme le meilleur peer selon le score. Voici le partie que je doit se brouiller. Ce score est mis en 1000 pour tous les peers pour l'instant. Donc je propose de calculer le score selon RTT(Round-Trip time) qui peut mesurer bien le temps à parcourir entre deux peer. 
+
+La solution du score de chaque peer, il en y a deux. 
+
+1. utiliser le RTT pour la requête sendInterest
+2. calculer le score selon la bande passante (le largeur de contenu reçu / temps parcouru)
+
+# 07 Juin
+
+**Objectif:**
+
+1. Mesurer le faisailité de chaque solution. 
