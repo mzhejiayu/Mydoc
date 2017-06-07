@@ -63,9 +63,37 @@ Donc, pour le moment, il faut choisir les méthodes à implementer et les donner
 
 **Pour la suite, on peut également mésurer de coté du manageur qui a une trace de chaque peer.**
 
-|                       nom | faisabilité | poids | explication                              |
-| ------------------------: | ----------- | :---: | :--------------------------------------- |
-|   Fréquence de discussion | OUI         |       | calculer le pourcentage $discussionAvecUnPeer/discussionAvecTous$ |
-|            Bande passante | OUI         |       | ajouter un parametre dans la requête sendSatisfy "sentTime" qui indique le datetime de cet envoie. calculer le temps parcouru dans la fonction _onSatisfy. calculer la bande passante selon la formule |
-| Fréquence de Déconnextion |             |       |                                          |
-|          RTT sans CONTENU |             |       |                                          |
+|                       nom | faisabilité | explication                              |
+| ------------------------: | :---------: | :--------------------------------------- |
+|   Fréquence de discussion |     OUI     | calculer le pourcentage $discussionAvecUnPeer/discussionAvecTous$ |
+|            Bande passante |     OUI     | ajouter un parametre dans la requête sendSatisfy `sentTime` qui indique le datetime de cet envoie. calculer le temps parcouru dans la fonction `_onSatisfy`. calculer la bande passante selon la formule. Il faut modifier le classe EBMessage pour ajouter un timestamp pour chaque message. |
+| Fréquence de Déconnextion |     OUI     | ça peut être un pourcentage qui est celui du nombre de requête envoyé avant un déconnexion. Par exmple, j'ai envoyé 5 requêtes et j'ai reçu une déconnexion, du coup, ce pourcentage est 1/5 = 0.2. Le fiablité du peer est 1-0.2 = 0.8 |
+|          RTT sans CONTENU |    °OUI     | on peut justement mésurer ping et pong qui sont envoyés immédiatement. Par contre, les autres requêtes peuvent entraîner les temps d'attente d'envoie des autres messages dans le liste qui pourrait pas être un indicator pour mésurer un peer. |
+
+Voici le formule pour calculer le score. 
+
+$ScoreGeneral = \frac{\sqrt{PossibilitéEnvoie}\times Fiabilité}{\log(RTT)}$
+
+$BandePassante=\frac{ContenuEnvoie}{Temps}$ 
+
+le premier formule est pour la premiere évaluation. 
+
+le deuxième est pour l'évaluation suivante si neccessaire. 
+
+```javascript
+// This code is used to calculate sqrt(possibilty of sending message)
+var peerList = [4,6,8,3,1,1,100,1,1]
+
+var sum:number = peerList.reduce((a:number,b:number) => {
+  return a+b
+})
+
+console.log(peerList.map((each:number) => {
+  return Math.sqrt(each/sum)
+}))
+
+```
+
+$Fiabilité = 1-\frac{1}{N_{succss}}$
+
+En fait, une évaluation de la fiabilité n'est pas assez correcte car un échec peut être un cas aléatoire. Donc on peut remettre la fiabilité à 1 pour certain peer aléatoirement 30 secondes. 
