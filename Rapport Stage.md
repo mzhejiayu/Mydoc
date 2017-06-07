@@ -48,3 +48,24 @@ La solution du score de chaque peer, il en y a deux.
 **Objectif:**
 
 1. Mesurer le faisailité de chaque solution. 
+2. La conception d'un système du score. 
+
+**Résultat**:
+
+Voilà trois types des statistiques qu'on peut s'en servir pour mesure le score: 
+
+1. la fréquence de la discussion. C'est à dire, si un peer est habituel à discuter avec moi, c'est plus stable et plus fiable. 
+2. la bande passante calculé selon la formule $largeurDeContenu/temps$. C'est le mesurement plus pratique, car on doit acquiere les données de la façon rapide. 
+3. la fréquence de la déconnexion de certain peut servir comme un pénalité du score, car elle indique l'instablité d'une connextion entre peer. 
+4. RTT des requêtes sans CONTENU, c'est un mesurement rapide et facile. 
+
+Donc, pour le moment, il faut choisir les méthodes à implementer et les donner un poids pour les combiner.
+
+**Pour la suite, on peut également mésurer de coté du manageur qui a une trace de chaque peer.**
+
+|                       nom | faisabilité | poids | explication                              |
+| ------------------------: | ----------- | :---: | :--------------------------------------- |
+|   Fréquence de discussion | OUI         |       | calculer le pourcentage $discussionAvecUnPeer/discussionAvecTous$ |
+|            Bande passante | OUI         |       | ajouter un parametre dans la requête sendSatisfy "sentTime" qui indique le datetime de cet envoie. calculer le temps parcouru dans la fonction _onSatisfy. calculer la bande passante selon la formule |
+| Fréquence de Déconnextion |             |       |                                          |
+|          RTT sans CONTENU |             |       |                                          |
