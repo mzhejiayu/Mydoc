@@ -6,13 +6,13 @@ Le système easybroadcast qui a la capacité de réduire le flux d’internet de
 
 **Objectif**: 
 
-1. Connaître le système easybroadcast (la structure générale en regardant les codes) 
+{0}. [x] Connaître le système easybroadcast (la structure générale en regardant les codes) 
 
 # 02 Juin
 
 **Objectif**: 
 
-1. Connaître le système easybroadcast. (apprendre les concepts HLS, WebRTC et la structure de class)
+{0}. [x] Connaître le système easybroadcast. (apprendre les concepts HLS, WebRTC et la structure de class)
 
 **Concepts Apris**: 
 
@@ -26,9 +26,9 @@ Le système easybroadcast qui a la capacité de réduire le flux d’internet de
 
 **Objectif**: 
 
-1. Finir la graphe de communication entre peer. 
-2. Apprendre le concept WebWorker: Comprendre la notion: leechers, peer liste et seeder. SwarmSize indique le largeur de quoi?
-3. Trouver au moins une solution pour la fonction getScore qui évalue la qualité de Peer.  
+{0}. [x] Finir la graphe de communication entre peer. 
+{0}. [x] Apprendre le concept WebWorker: Comprendre la notion: leechers, peer liste et seeder. SwarmSize indique le largeur de quoi?
+{0}. [x] Trouver au moins une solution pour la fonction getScore qui évalue la qualité de Peer.  
 
 **Résultat**:
 
@@ -47,8 +47,8 @@ La solution du score de chaque peer, il en y a deux.
 
 **Objectif:**
 
-1. Mesurer le faisailité de chaque solution. 
-2. La conception d'un système du score. 
+{0}. [x] Mesurer le faisailité de chaque solution. 
+{0}. [x] La conception d'un système du score. 
 
 **Résultat**:
 
@@ -91,9 +91,47 @@ var sum:number = peerList.reduce((a:number,b:number) => {
 console.log(peerList.map((each:number) => {
   return Math.sqrt(each/sum)
 }))
-
 ```
 
 $Fiabilité = 1-\frac{1}{N_{succss}}$
 
 En fait, une évaluation de la fiabilité n'est pas assez correcte car un échec peut être un cas aléatoire. Donc on peut remettre la fiabilité à 1 pour certain peer aléatoirement 30 secondes. 
+
+# 08 Juin
+
+**Objectif:**
+
+{0}. [x] coder la solution et faire le test. 
+
+**Modification de la solution:**
+
+On a proposé de changer le mésurement fiablité comme le pourcentage d'envoi d'une paquette, et ce valeur est mis à 1 initialement. Et puis, il m'a dit que RTT doivent être mésuré selon la requête Interest parce qu'on cherche les peers plus libres. Mais en fait, le degree de librement change toujours, et l'effet du reseaux est plus important que la calcul local. En fait, le peer qui a un bon etat de reseaux doit être responsable à echanger plus avec les autres. 
+
+L'autre proposition est qu'on peut calculer la fiablitlié selon réponse/requete
+
+Résultat: La résultat est assez bien. Si je pause un peer, le score tombe progressivement pour ce peer. 
+
+**Suite:**
+
+j'ai testé ce que j'ai fait pour la premiere version. J'ai trouvé que ça fait long temps pour détecter qu'un peer arrête le stream. Donc je pense qu'on peut ajouter un ***pénalité*** pour la reponse ***choke* ou *busy*.**
+
+Pour finaliser la calcul d'un score. la possibilité d'envoi n'est pas très util. On doit adapter la calcul à chaque différent requête afin de milleur encourager les bonnes et punir les mauvais. 
+
+| Reçu     | Classe de peer | Explication                              |
+| -------- | -------------- | ---------------------------------------- |
+| Contain  | +++            | Ce qui m'envoie contain est ce qui a la paquette que je veux |
+| Satisfy  | ++             | Ce qui m'envoie satisfy est ce qui me plaît le plus, du coup, c'est le peer plus intéressant. |
+| Choke    | ---            | Ce qui choke.                            |
+| Busy     | --             | Ce qui est occupé.                       |
+| Interest | +              |                                          |
+| Request  | +              |                                          |
+| Ping     | °              |                                          |
+| Pong     | °              |                                          |
+
+En fin, je dois concevoire intégrer bande passante dans le système du score. 
+
+# 09 Juin
+
+- [ ] Concevoir la façon d'intégration de la bande passante dans le système du score.
+- [ ] Coder la bande passante et tester le score. 
+- [ ] Trouver la façon de faire le test dans un plus grand network. 
