@@ -135,3 +135,28 @@ En fin, je dois concevoire intégrer bande passante dans le système du score.
 - [ ] Concevoir la façon d'intégration de la bande passante dans le système du score.
 - [ ] Coder la bande passante et tester le score. 
 - [ ] Trouver la façon de faire le test dans un plus grand network. 
+
+Aujourd'hui, j'ai fait le research sur elasticsearch et du coup, j'ai trouvé que c'est un système qui permet d'implémenter la fonctionalité de research très facilement, sans effort. En plus, c'est le research elastic, CàD on peut également utiliser les shards pour dupliquer et distribuer les données dans plusieur serveur. Ça peut être utiliser dans le partie dashboard.
+
+# 12 Juin
+
+- [x] Trouver un moyen d'evaluer la performance d'échange entre peer. 
+- [x] Installer l'elasticsearch sur le serveur
+- [x] Concevoir l'indice et type de document
+
+**Resultât:**
+
+Je propose d'utiliser l'elasticsearch pour l'analyse. Car l'elasticsearch permet l'envoie des statistiques facilement pour le front-end. Donc, je vais concevoir les indices et types pour stocker les stats qui sont utils à analyser la performance. 
+
+Des trucs à analyser sont comme desous. 
+
+| Nom                            | Description                              |
+| ------------------------------ | ---------------------------------------- |
+| Occupation CPU                 | ….                                       |
+| Vitesse de transmission(Moyen) | J'envoie à le serveur elasticsearch kb et le temps. |
+| Ratio d'occupation             | Calculer depuis le nom de leetcher de chaque peer. |
+| Des metrics                    | Le metric pour chaque paquette.          |
+|                                |                                          |
+
+# 13 Juin
+
