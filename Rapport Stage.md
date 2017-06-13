@@ -161,15 +161,12 @@ Des trucs à analyser sont comme desous.
 # 13 Juin
 
 - [x] Réalisation d'indice et les mapping pour l'analyse. 
-- [ ] Deployement du système dans le clouds pour tester dans 4 machines dans le bureau.
-- [ ] Le plugin qui permet d'envoyer les statistiques à l'ES
+- [x] Le plugin qui permet d'envoyer les statistiques à l'ES
 - [ ] Ecrire Wiki de mon partie 
 
 **Resultât: **
 
-Pour aujourd'hui, j'ai utilisé la plupart du temps pour réaliser et améliorer le structure du type 
-
-`performance` dans ES, qui stocker des statistiques pour analyse. Pour le moment, le structure est comme ci-dessous:
+Pour aujourd'hui, j'ai utilisé la plupart du temps pour réaliser et améliorer le structure du type `performance` dans ES, qui stocker des statistiques pour analyse. Pour le moment, le structure est comme ci-dessous:
 
 ```json
 PUT performance
@@ -205,3 +202,8 @@ PUT performance
 }
 ```
 
+On peut désormais se bénefier du système kibana qui permet des analyse en temps réal et totalement personalisé. J'ai essayé d'ajouter des graphes, ça passe très bien. Le code ElasticPlugin.js est la réalisation du plugin.
+
+# 14 Juin
+
+- [ ] Intégration dy plugin. 
