@@ -138,7 +138,7 @@ En fin, je dois concevoire intégrer bande passante dans le système du score.
 
 Aujourd'hui, j'ai fait le research sur elasticsearch et du coup, j'ai trouvé que c'est un système qui permet d'implémenter la fonctionalité de research très facilement, sans effort. En plus, c'est le research elastic, CàD on peut également utiliser les shards pour dupliquer et distribuer les données dans plusieur serveur. Ça peut être utiliser dans le partie dashboard.
 
-# 12 Juin
+# 12 Juin	
 
 - [x] Trouver un moyen d'evaluer la performance d'échange entre peer. 
 - [x] Installer l'elasticsearch sur le serveur
@@ -159,4 +159,49 @@ Des trucs à analyser sont comme desous.
 |                                |                                          |
 
 # 13 Juin
+
+- [x] Réalisation d'indice et les mapping pour l'analyse. 
+- [ ] Deployement du système dans le clouds pour tester dans 4 machines dans le bureau.
+- [ ] Le plugin qui permet d'envoyer les statistiques à l'ES
+- [ ] Ecrire Wiki de mon partie 
+
+**Resultât: **
+
+Pour aujourd'hui, j'ai utilisé la plupart du temps pour réaliser et améliorer le structure du type 
+
+`performance` dans ES, qui stocker des statistiques pour analyse. Pour le moment, le structure est comme ci-dessous:
+
+```json
+PUT performance
+{
+  "mappings": {
+    "realtimestatus": {
+      "_all": {
+        "enabled": false
+      },
+      "properties": {
+        "userhash": {"type": "text"},
+        "date": {"type": "date"},
+        "containCount": {"type": "integer"},
+        "containTimespent": {"type": "integer"},
+        "pingCount": {"type": "integer"},
+        "pingTimespent": {"type": "integer"},
+        "requestCount": {"type": "integer"},
+        "requestTimespent": {"type": "integer"},
+        "busyCount": {"type": "integer"},
+        "busyTimespent": {"type": "integer"},
+        "chokeCount": {"type": "integer"},
+        "chokeTimespent": {"type": "integer"},
+        "pongCount": {"type": "integer"},
+        "pongTimespent": {"type": "integer"},
+        "satisfyCount": {"type": "integer"},
+        "satisfyTimespent": {"type": "integer"},
+        "interestCount": {"type": "integer"},
+        "interestTimespent": {"type": "integer"},
+        "useScore": {"type": "boolean"}
+      }
+    }
+  }
+}
+```
 
