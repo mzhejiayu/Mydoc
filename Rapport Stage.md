@@ -162,7 +162,6 @@ Des trucs à analyser sont comme desous.
 
 - [x] Réalisation d'indice et les mapping pour l'analyse. 
 - [x] Le plugin qui permet d'envoyer les statistiques à l'ES
-- [ ] Ecrire Wiki de mon partie 
 
 **Resultât: **
 
@@ -206,4 +205,87 @@ On peut désormais se bénefier du système kibana qui permet des analyse en tem
 
 # 14 Juin
 
-- [ ] Intégration dy plugin. 
+- [x] Intégration du plugin. 
+- [x] Écrire Wiki de mon partie. 
+- [x] Installer X-pack qui permet de gérer les utilisateurs. 
+
+```
+# Elasticsearch
+
+Elasticsearch is install on the machine `5.192.1.116`. The bin file is at `/usr/share/elasticsearch`. This is basically the engin to facilite the processus of analysing the performance of the newly added selection of peer, which is presented in article 'Selection of Peer'. This elasticsearch server can be futhur used to implement the dashbroad too. 
+
+## Version
+
+5.4
+
+## How To Start, stop and restart
+
+`sudo -i service elasticsearch [start|stop|restart]`
+
+## How To Configurate
+
+`cd /etc/elasticsearch`
+
+`vi elasticsearch.yml`
+
+All the configuration options are presented in this file. The manual for configuration can be found on the website of Elasticsearch. <u>https://www.elastic.co</u>
+
+## How to send data to elastic search with REST API from browser 
+
+>  In order to let all players send analytic data to this elasticsearch server, it's required to setup the CORS in elasticsearch.yml to allow CORS from different origins. 
+
+Remember to add a header `Authorisation: Basic <token>` to the request, where the `<token>` means base64 encoded string `username:password`, for example, in our system is `elastic:easyboardcast`, which after encode becomes `ZWxhc3RpYzplYXN5YnJvYWRjYXN0`. 
+
+Headers like this in each request is required: 
+
+​```jSon
+headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ZWxhc3RpYzplYXN5YnJvYWRjYXN0'
+      }
+​```
+
+**!!Security Issue: this usage is not safe, because in client code, this header configuration is visible to all. Better create a proxy server to handle request and filter unauthorized origin**
+
+My current solution for the security issue is to limit CORS request to use just POST method.
+
+​```yaml
+# this is in /etc/elasticsearch/elasticsearch.yml
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+http.cors.allow-headers: Content-Type, Authorization
+http.cors.allow-methods: POST
+​```
+
+
+
+# Kibana
+
+Kibana is the tool for creating visualization to the data retrieved from elasticsearch. This tool is very flexible and useful. 
+
+## How To Start, Stop and Restart
+
+generaly the same as elasticsearch, 
+
+`sudo -i service kibana [start | stop | restart]`
+
+## How To Configure
+
+`cd /etc/kibana`
+
+`vi kibana.yml`
+```
+
+
+
+# 15 Juin
+
+- [ ] Intégration du partie interest et request du plugin. 
+- [ ] Améliorer et ajouter des données envoiyé à l'elasticsearch. 
+- [ ] Écrire wiki du partie protocole.
+- [ ] Concevoir la visualisation qui permet de dire si la performance était améliorée ou pas. 
+
+```
+
+```
+
