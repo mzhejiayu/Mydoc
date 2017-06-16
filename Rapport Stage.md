@@ -280,12 +280,14 @@ generaly the same as elasticsearch,
 
 # 15 Juin
 
-- [ ] Intégration du partie interest et request du plugin. 
-- [ ] Améliorer et ajouter des données envoiyé à l'elasticsearch. 
+- [x] Intégration du partie interest et request du plugin. 
+- [x] Améliorer et ajouter des données envoyé à l'elasticsearch. 
 - [ ] Écrire wiki du partie protocole.
-- [ ] Concevoir la visualisation qui permet de dire si la performance était améliorée ou pas. 
+- [x] Concevoir la visualisation qui permet de dire si la performance était améliorée ou pas. 
 
 ```
 
 ```
+
+**Résultat:**
 
