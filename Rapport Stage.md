@@ -209,7 +209,7 @@ On peut désormais se bénefier du système kibana qui permet des analyse en tem
 - [x] Écrire Wiki de mon partie. 
 - [x] Installer X-pack qui permet de gérer les utilisateurs. 
 
-```
+```markdown
 # Elasticsearch
 
 Elasticsearch is install on the machine `5.192.1.116`. The bin file is at `/usr/share/elasticsearch`. This is basically the engin to facilite the processus of analysing the performance of the newly added selection of peer, which is presented in article 'Selection of Peer'. This elasticsearch server can be futhur used to implement the dashbroad too. 
@@ -285,9 +285,57 @@ generaly the same as elasticsearch,
 - [ ] Écrire wiki du partie protocole.
 - [x] Concevoir la visualisation qui permet de dire si la performance était améliorée ou pas. 
 
-```
+```markdown
+# Finding the best peer to communicate with
+> Principle: since the score of peer is mesured within each communication, we should find a way to do so.
+> I calculate the score with the function evaluatePeers which can be found in v2vManager.js. The function relate the score with the rtt between the peer and the type of commucation we have with the peer. Each contain response, we'll give the peer 2 points. Each finished satisfy, we'll give the peer 2 points. Cuz, in this case, those new peers who have the newest content available will send back 'contain', and win points and have more chance to exchange with other peers. For those who choke or who is busy will get no points event lose points. 
 
+In the following chapter, I'll discuss about the way that I implement it. 
+
+## Peer.js
+In peer.js, I've added lines of code that count each type of request-response as stated above. These parts are noted with a comment `// Written by Olivier`. You shall find it immediately. 
+
+## V2VManger.js
+### Initialization: 
+In this file, I've added in the constructor severals lines of code: initialize _useScore (whether to use my function of calculate Score), initialize _sendingStatsToES (whether to send the statistics to elasticsearch), initialize ElasticRequester which implements the functionalities of sending statistics to the elasticsearch server. These configurations are set in eb.js after initialization of V2Vmanager. 
+### Score calculation: 
+The function named evaluatePeers () is called each time when one peer response pong. In this case, the score of peers is relatively changed when some peers in the swarm response pong to the peer. The result of the score is then used to select the best peer to request the video package. 
+## eb.js
+To enable userScoring and sendingStatsToES
+## Elastic Plugin
 ```
 
 **Résultat:**
+1. Aujourd'hui, j'ai pu réaliser l'envoie des évenements de l'interest et request. Donc pour l'instant, chaque évenement contient les données `timestamp`, `eventtype`, `payload`, `userhash`, `timespent`. Ça c'est suffissant pour calculer la vitesse moyenne et les pourcentage pour chaque évenement. On peut désoremais analyser la performance à partir de ça. 
+
+2. J'ai crée trois types de visualisation pour bien voir les différences causées par ce plugin. La première à noter, c'est la diagrame de vitesse moyenne divisée par `useScoring` qui indique si ce peer utilise la fonction que j'ai créée ou pas. C'est un peu difficile pour le début, parce que le requête pour calculer ça est dans une forme que je ne connais pas. Pourtant, j'ai trouvé des tutorial sur internet qui me permet de faire ça. Ensuite, la deuxième diagram, qui affiche les pourcentage de satisfy, interest-contain, interest-choke, interest-busy, ping. Le résultât de la comparasion est que il n'y a pas de différence remarquable entre les deux cas. Mais des idées m'arrivent qu'on doit aussi ***mesurer les échecs lors de satisfy***.  
+
+# 19 Juin
+Le tâche principal d'aujourd'hui, c'est d'intégrer mon partie dans un l'environement de production pour qu'on puisse determiner si la performance serait améliorée ou pas. C'est une démarche importante dans mon sujet. Demain, on peut indentifier les différences causées par ma fonction de donner des notes aux peers. Finalement, j'ai ajouté quelque graphe permettant d'afficher plus clairement les statistics de ces deux type. L'une est un histograme de nombre de peer et le volumn téléchargé par v2v comparé par raport à `usescoring`. En plus, j'envoie aussi `location.origin` et `location.href` pour qu'on identifie l'origin de stats envoyés. 
+
+
+
+# 20 Juin
+
+- [x] Comparer le résultat du test. 
+- [ ] Analyse à partir de graphe de comparaison.  
+- [ ] Trouver quelque solution qui puisse améliorer la fonction de scoring. 
+
+
+
+## Analyse réalisée 
+
+1. Vitesse moyenne: dans cet aspect, la vitesse de peer qui n'utilise pas le scoring est superieur que celui qui l'utilise. 
+2. Tout les deux ont autant de close-peer, c'est à dire, tout les peers ne sont pas stable. 
+3. Il y a 2 GB de données transferts dans le test.
+4. Les peers qui n'utilisent pas le scoring transferent 60 pourcents plus de données qui ceux qui l'utilisent. 
+5. Il y a deux heures où les peers qui utilisent le scoring sont légèrement mieux que ceux qui ne l'utilisent pas. Et Mais les 4 heures suivants, le cas est l'inverse. 
+
+### pourquoi ? 
+1. une raison peut être que la calculation de score prenne trop de CPU, et du coup il tardit la réponse à l'autres peers.  
+
+## Amélioration envisagée
+1. Améliorer l'algorithme afin qu'il ne prenne pas beaucoup de CPU --- L'on peut reduire l'action de calculer, car pour l'instant, on calcule les scores en recevant chaque ping. Donc pour une évaluation totale, il fallait calculer 10 fois. 
+2. Éliminer les peers qui soivent mauvais et remplacer-les avec des nouveaux arrivés.
+3. 
 
