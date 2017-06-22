@@ -337,5 +337,6 @@ Le tâche principal d'aujourd'hui, c'est d'intégrer mon partie dans un l'enviro
 ## Amélioration envisagée
 1. Améliorer l'algorithme afin qu'il ne prenne pas beaucoup de CPU --- L'on peut reduire l'action de calculer, car pour l'instant, on calcule les scores en recevant chaque ping. Donc pour une évaluation totale, il fallait calculer 10 fois. 
 2. Éliminer les peers qui soivent mauvais et remplacer-les avec des nouveaux arrivés.
-3. 
 
+# 21 Juin
+- [] Trouver le problème qu'on a rencontré hier soir que les peers qui utilisent la fonction ne peut pas charger de partie 
