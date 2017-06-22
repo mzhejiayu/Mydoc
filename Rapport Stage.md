@@ -339,4 +339,13 @@ Le tâche principal d'aujourd'hui, c'est d'intégrer mon partie dans un l'enviro
 2. Éliminer les peers qui soivent mauvais et remplacer-les avec des nouveaux arrivés.
 
 # 21 Juin
-- [] Trouver le problème qu'on a rencontré hier soir que les peers qui utilisent la fonction ne peut pas charger de partie 
+- [x] Trouver le problème qu'on a rencontré hier soir que les peers qui utilisent la fonction ne peut pas charger de partie 
+- [x] Améliorer la visualisation de statistics afin qu'on peut voir les flux d'utilisateur au cours du temps.
+- [x] Améliorer la manière qu'on télécharge les statistiques à l'ES. 
+
+**Résultat**
+Le problème qu'ils ont rencontrés, c'est qu'ils ne demandent pas à les autres peers dont les scores sont moins zéro. C'est le point que je n'avait pas connu quand je changais la fonction comme -rtt. Du coup, je rajoute 40000 pour tous les peers afin qu'ils peuvent être plus de zéro. 
+
+J'ai ajouté deux graphes. L'une est les pourcentages de système d'opération et le type et la version du browser. 
+
+Afin qu'on peut reduire l'occupation du réseaux quand on serait en train de voir un vidéo. 
