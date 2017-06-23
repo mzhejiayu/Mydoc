@@ -339,4 +339,22 @@ Le tâche principal d'aujourd'hui, c'est d'intégrer mon partie dans un l'enviro
 2. Éliminer les peers qui soivent mauvais et remplacer-les avec des nouveaux arrivés.
 
 # 21 Juin
-- [] Trouver le problème qu'on a rencontré hier soir que les peers qui utilisent la fonction ne peut pas charger de partie 
+- [x] Trouver le problème qu'on a rencontré hier soir que les peers qui utilisent la fonction ne peut pas charger de partie 
+
+
+# 23 Juin
+- [x] Trouver la cause quand on ferme un peer. 
+- [x] Améliorer la sélection d'un peer. 
+- [x] Activer la fonction de sélection totalement. 
+- [x] Implémentation d'une version où les peers envoient plusieurs requests. Ce nombre peut être confuguré dans Option. 
+**Résultat**
+1. Si le channel de RTC entre peer était coupé, le client serait fermé et du coup ils envoyent close à l'elasticsearch. It is beyond our control.  
+2. Une question à répondre, c'est quoi qui différentie deux peer. C'est RTT ou d'autres choses. Oui pour l'instant car c'est plus simple et consistent à utiliser. Mais surtout, la performance en gros n'a pas été amélioré définitivement. Donc, il faut trouver le le goulot systématique. 
+3. J'ai ajouté un nouvel indicateur qui s'appele 'redundant-satisfy'. C'est à dire c'est un satisfy inutil. J'espère qu'on peut acquérir meilleur vitesse en envoyant les requests redundants. 
+
+**Sujet Nouvel**
+J'ai reçu deux sujets suivants. L'un est d'intégrer 'hava' dans l'échange. Ce message communique que j'ai quelque paquette et tu peux me chercher si tu as besoin. 
+# 26 Juin
+- [ ] ajouter plus d'information dans interest. Il faut contenir les paquettes que j'ai et que je veux. 
+
+
