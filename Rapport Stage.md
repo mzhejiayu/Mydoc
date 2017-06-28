@@ -361,3 +361,15 @@ Afin qu'on peut reduire l'occupation du réseaux quand on serait en train de voi
 J'ai reçu deux sujets suivants. L'un est d'intégrer 'hava' dans l'échange. Ce message communique que j'ai quelque paquette et tu peux me chercher si tu as besoin. 
 # 26 Juin
 - [ ] ajouter plus d'information dans interest. Il faut contenir les paquettes que j'ai et que je veux. 
+- [x] refléchir comment faire un manager simple de nouveaux protocole. 
+- [x] établir la structure du serveur websocket. 
+  
+**Résultât**
+1. Il paraît que je dois aussi faire le serveur du protocol qui sera codé en Python. Du coup, je dois apprendre un peu Python 3 où il y a pas mal de détails que je ne connais jamais. Par exemple, les mots clés: await, yield etc.
+2. J'ai crée la structure du serveur qui initilise websocket et entre dans un boucle d'evenement afin de pouvoir distribuer les messages et les traiter
+
+# 27 Juin
+- [ ] Installer le système de distribution du message. 
+- [ ] Configurer les messages et les traitements. 
+- [ ] Trouver la façon qu'on stocker les peers dans mémoire. 
+- [ ] Apprendre comment s'établir la connection entre deux peer. 
