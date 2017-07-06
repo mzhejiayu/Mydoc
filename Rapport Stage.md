@@ -1,4 +1,5 @@
 # 01 Juin 2017
+    <script src='https://webrtc.github.io/adapter/adapter-latest.js'></script>
 
 **Intro**: 
 
@@ -375,9 +376,11 @@ J'ai reçu deux sujets suivants. L'un est d'intégrer 'hava' dans l'échange. Ce
 - [ ] Apprendre comment s'établir la connection entre deux peer. 
 
 # 28 Juin
-- [ ] Comprendre JSEP. 
+- [x] Comprendre JSEP. 
 - [ ] Conception d'un systeme de p2p signaling pour easybroadcast v2.0. 
 
 
 # 29 Juin
 - [ ] Conception d'un signaller pour le front-end
+
+
