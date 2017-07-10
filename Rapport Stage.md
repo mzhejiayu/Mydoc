@@ -383,4 +383,15 @@ J'ai reçu deux sujets suivants. L'un est d'intégrer 'hava' dans l'échange. Ce
 # 29 Juin
 - [ ] Conception d'un signaller pour le front-end
 
+# 10 Juillet
 
+## Objectif
+1. Enreigistrer l'entree du peer et sortie du peer enfin de prevenir à l'elasticsearch. 
+2. Trouver la facon d'integrer la geogalisation. 
+
+## Résultat
+1. On peut envoyer des stats dans WebSocketHandler. 
+2. Il y a deux étaps pour établir le long et le latitude du peer. **obtenir ip addresse** et puis **geoip transformation**. Pour chaque peer qui entre, le s-server effectue une k-nn recherche, et retour k peer qui sont les plus proches peer. L'algorithme pour selectionner un peer, je vais étudier une thèse Fast k-NN Seearch. Le travail suivant peut être l'intégration la geolocalisation dans le projet et implémenter ou introduire l'algorithme k-nn recherche dans le projet. 
+
+## Suite
+1. Ajouter plus d'information dans le message interest, contain etc pour indiquer les infos sur timeshift afin qu'on peut request directement à des peers. Du coup, il va reduire les rêquetes qui sont pas trop utils. 
