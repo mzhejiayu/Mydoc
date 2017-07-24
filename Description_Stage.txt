@@ -1,0 +1,5 @@
+2017.6月到9月，就职于easybroadcast，系统性能分析和优化、软件开发工程师，主要的工作对象是本公司的产品。该产品致力于做live视频的v2v化的协议，减少cdn的负担以达到降低视频发布成本的作用。
+工作内容：elasticsearch, python-tornado, websocket, webRTC, videoJS, Dashjs。在公司的主要产品中做修改和性能优化，以及新版本的开发。
+1. 运用elasticsearch做性能分析，找到了系统的问题所在。
+2. 与团队分析并设计了协议的2.0版本，平衡了原先signaling server的高负载，提高了p2p有效沟通的效率，同等数据交互量消息交换数目降低到10%。
+3. 编码Dashjs视频播放器的驱动程序，将库的功能适配到Dash播放器中。
