@@ -9,6 +9,7 @@ Le système easybroadcast qui a la capacité de réduire le flux d’internet de
 
 {0}. [x] Connaître le système easybroadcast (la structure générale en regardant les codes)
 
+
 # 02 Juin
 
 **Objectif**:
@@ -22,6 +23,7 @@ Le système easybroadcast qui a la capacité de réduire le flux d’internet de
 > **WebRTC**: WebRTC est API qui permet d'échanger entre Peers en temps réel. Matrics: C’est sont les données qui sont intéressant à analyser sur le dashboard. Chaque peer au cours de regarder un video envoie les données dans le format Matrics au manager.
 
 > **Room**: Le groupe de peers qui sont en train de regarder le même vidéo.Swarm: Les peers dans le même Room qui échange avec ce peer là.  
+
 
 # 06 Juin
 
@@ -43,6 +45,7 @@ La solution du score de chaque peer, il en y a deux.
 
 1. utiliser le RTT pour la requête sendInterest
 2. calculer le score selon la bande passante (le largeur de contenu reçu / temps parcouru)
+
 
 # 07 Juin
 
@@ -428,7 +431,27 @@ J'ai reçu deux sujets suivants. L'un est d'intégrer 'hava' dans l'échange. Ce
 - [x] Add the seperated way of loading eb.js
 - [x] Clean the code of Dashjs
 
+
 # 25 Juillet
 **Things to do**:
 - [ ] Think about the change of resoluion issue.
 - [ ] Think about timeshift issue.
+
+
+# BUG LIST
+1. Dashjs will block automaticly and keep requesting mpd.
+2. Metrics raised a error on the function Utilities.round(), when moving the timeshift control, the bufferLength becomes NaN. 
+
+#26 - 30 Juillet
+1. Delopy the new version in espacetv, ghanalive/atom and nessma for testing, where there is thousands of users per day. 
+2. Found the memory leak in the code and corrected them.
+3. Understand more about the EbLibrary's sending content. The content should be sent in format of sliced ArrayBuffer. Each video/audio content is sliced into 7-10 parts.
+
+
+# Rapport Stage:
+## 1. Présentation l'entreprise (entreprise > service > equipe lie a stage)
+Easybroadcast est une entreprise qui propose une solution hybride associant le modèle classique Client/Serveur (lorsque le traffic est faible) et le modèle décentralisé (pair à pair) quand le trafic s’intensifie, afin de pouvoir réduire l'utilisation et dépendence de CDN. Ça peut réduire la bande passante pour diffuser les contenus vidéo et audio énormément. Le système mets en rélation les viewers dans un même video pour qu'il peuvent se partager les contenues vidéo et audio. Plus les audiances sont, meilleur la performance du système sera. Il peut réduire la consommation de bande passant jusqu'à 75 pourcent. Hybride il s'agit de commuter entre CDN et P2P automatiqument selon la condition de réseau et les peers. Les calcus de timing de la choix de mode sont fait pour que la transition entre P2P et CDN soit harmonieuse. Le système permet de transformer un large audience en atout. 
+## 2. gestion de projet
+## 3. cahier des charges
+## 4. Travail realise (Mission, que faites-vous, pourquoi l'entrepris vous a-t-elle fait venir, résultat, )
+## 5. Conclusion
